@@ -1,7 +1,7 @@
 
-# Setup Docker Laravel 11 com PHP 8.3
-
-### Passo a passo
+### Projeto Contact
+    - Docker
+### Como rodar o projeto localmente
 Clone Repositório
 ```sh
 git clone https://github.com/ThiagolFPereira/setup-docker-laravel-11.git
