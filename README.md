@@ -1,6 +1,6 @@
 
 ### Projeto Contact
-    - Docker
+    Docker + Laravel
 ### Como rodar o projeto localmente
 Clone Repositório
 ```sh
