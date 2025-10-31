@@ -2,43 +2,55 @@
 
 namespace App\Livewire;
 
+use App\Models\Contact;
 use Illuminate\Support\Facades\Log;
 use Livewire\Component;
-
+use Livewire\Attributes\Validate;
 class FormContact extends Component
 {
+    #[Validate(
+        'required|min:3|max:50',
+        message: [
+            'required' => 'Informe o nome',
+            'min' => 'O nome deve ter pelo menos :min caracteres',
+            'max' => 'O nome não pode passar de :max caracteres'
+        ])]
+    public $name;
 
-    public $name, $email, $phone;
+    #[Validate('required|email|min:5|max:50')]
+    public $email;
+
+    #[Validate('required|min:5|max:15')]
+    public $phone;
+
+    public $error = "";
+
+    public $success = "";
 
     public function newContact() 
     {
-        $this->validate(
-            [
-                'name' => 'required|min:3|max:50',
-                'email' => 'required|email|min:5|max:50',
-                'phone' => 'required|min:5|max:15',
-            ],
-            [
-                'name.required' => 'Informe o seu nome',
-                'name.min' => 'O nome precisa ter pelo menos :min caracteres',
-                'name.max' => 'O nome não pode passar de :max caracteres',
+        $this->validate();
 
-                'email.required' => 'O e-mail é obrigatório',
-                'email.email' => 'Informe um e-mail válido',
-                'email.min' => 'O e-mail precisa ter pelo menos :min caracteres',
-                'email.max' => 'O e-mail não pode passar de :max caracteres',
-
-                'phone.required' => 'O telefone é obrigatório',
-                'phone.min' => 'O telefone precisa ter pelo menos :min caracteres',
-                'phone.max' => 'O telefone não pode passar de :max caracteres',
-            ]
-        );
+        $result = Contact::firstOrCreate([
+            'name' => $this->name,
+            'email' => $this->email,
+        ],
+        [
+            'phone' => $this->phone,
+        ]);
 
         Log::info('Novo Contato: ', [
             'name' => $this->name,
             'email' => $this->email,
             'phone' => $this->phone,
         ]);
+
+        if($result->wasRecentlyCreated) {
+            $this->reset();
+            $this->success = "Contato criado com sucesso!";
+        } else {
+            $this->error = "Contato já existe!";
+        }
     }
 
     public function render()
