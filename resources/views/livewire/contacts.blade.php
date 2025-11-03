@@ -13,6 +13,9 @@
              <div class="col">  Nome: {{ $contact->name }}</div>
              <div class="col">  Email: {{ $contact->email }}</div>
              <div class="col">  Telefone: {{ $contact->phone }}</div>
+             <div class="col"> 
+                    <a href="{{route('contacts.delete', ['id' => $contact->id])}}" class=" btn btn-danger">Deletar</a>
+            </div>
          </div>
        </div>
        <hr class="m-0 p-0">   

@@ -4,11 +4,15 @@
             <meta charset="utf-8">
             <meta name="viewport" content="width=device-width, initial-scale=1">
             <link rel="stylesheet" href="{{ asset('assets/bootstrap/bootstrap.min.css')}}" />
-        <title>Contact - Livewire</title>
+        <title>{{ $title ?? 'Contato - Livewire'}}</title>
 
         @livewireStyles
     </head>
 <body>
+    <div class="text-center my-5">
+        <img src="{{ asset('assets/images/logo-livewire.png') }}" alt="Logo" width="128px">
+    </div>
+    
     {{ $slot ?? '' }}
 
     {{-- @livewireScripts --}}
