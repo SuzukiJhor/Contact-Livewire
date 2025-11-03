@@ -23,4 +23,7 @@
        </div>
        <hr class="m-0 p-0">   
    @endforeach
+   <div>
+    {{ $contacts->links() }}
+   </div>
 </div>

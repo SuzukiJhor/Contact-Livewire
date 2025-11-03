@@ -39,7 +39,7 @@ class EditContact extends Component
     public function updateContact()
     {
         $this->validate();
-        $exists = Contact::where('name', $this->name)->where('email', $this->email)->where('id', '!=', $this->contact->id)->exists();
+        $exists = Contact::where('email', $this->email)->where('id', '!=', $this->contact->id)->exists();
 
         if ($exists) {
             session()->flash('error', 'Contato já existe!');
