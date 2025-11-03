@@ -1,4 +1,5 @@
 <div class="card p-5">
+     <p class="mb-3">Novo Contato</p>
     <form wire:submit="newContact">
         <div class="mb-3">
             <label for="name">Nome</label>

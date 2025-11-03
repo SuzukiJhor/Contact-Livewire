@@ -16,6 +16,9 @@
              <div class="col"> 
                     <a href="{{route('contacts.delete', ['id' => $contact->id])}}" class=" btn btn-danger">Deletar</a>
             </div>
+             <div class="col"> 
+                    <a href="{{route('contacts.edit', ['id' => $contact->id])}}" class=" btn btn-primary">Editar </a>
+            </div>
          </div>
        </div>
        <hr class="m-0 p-0">   
